@@ -1,3 +1,7 @@
+import dns from "node:dns/promises";
+dns.setServers(["8.8.8.8", "1.1.1.1"]);
+ // Use reliable public DNS servers to avoid resolution issues in certain environments
+
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
@@ -36,7 +40,7 @@ app.use(helmet()); // Secure HTTP headers
 // Allow cross-origin requests from the client port
 app.use(
   cors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'], // standard Vite ports
+    origin: ['https://ai-powered-fullstack-ecommerce-website-89fw.onrender.com'], // standard Vite ports
     credentials: true, // Allow cookies to be sent along with cross-origin requests
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS']
   })
