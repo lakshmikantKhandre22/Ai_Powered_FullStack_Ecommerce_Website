@@ -46,9 +46,11 @@ app.use(
   })
 );
 
+
 if (process.env.NODE_ENV === 'development' || !process.env.NODE_ENV) {
   app.use(morgan('dev')); // Dev logs console printing
 }
+
 
 app.use(express.json()); // Body parser
 app.use(cookieParser()); // Cookie parser

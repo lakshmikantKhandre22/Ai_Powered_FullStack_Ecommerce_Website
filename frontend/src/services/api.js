@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: 'https://ai-powered-fullstack-ecommerce-website-1.onrender.com',
+  baseURL: import.meta.env.VITE_API_URL,
   withCredentials: true, // Crucial to enable sending HttpOnly cookies for token refreshes
   headers: {
     'Content-Type': 'application/json'
