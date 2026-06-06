@@ -1,7 +1,13 @@
 import axios from 'axios';
 
+// Ensure baseURL ends with /api if not present, and handle potential trailing slash
+let baseURL = import.meta.env.VITE_API_URL || 'http://localhost:5000/api';
+if (!baseURL.endsWith('/api') && !baseURL.endsWith('/api/')) {
+  baseURL = baseURL.endsWith('/') ? `${baseURL}api` : `${baseURL}/api`;
+}
+
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+  baseURL,
   withCredentials: true, // Crucial to enable sending HttpOnly cookies for token refreshes
   headers: {
     'Content-Type': 'application/json'
@@ -37,7 +43,7 @@ API.interceptors.response.use(
         console.log('[ShopSphere] Session expired. Attempting token rotation...');
         // Request token refresh
         const res = await axios.post(
-          'http://localhost:5000/api/auth/refresh-token',
+          `${baseURL}/auth/refresh-token`,
           {},
           { withCredentials: true }
         );
