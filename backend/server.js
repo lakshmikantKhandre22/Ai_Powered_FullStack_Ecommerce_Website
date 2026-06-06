@@ -65,6 +65,10 @@ app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
 app.use('/api/ai', aiRoutes);
 
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
+
 // 3) UNHANDLED ROUTES FALLBACK
 app.all('*', (req, res, next) => {
   next(new CustomError(`Can't find ${req.originalUrl} on this server!`, 404));
