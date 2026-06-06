@@ -30,16 +30,18 @@ const generateRefreshToken = (id) => {
 };
 
 // Helper to bundle and send tokens securely
-const sendTokenResponse = (user, statusCode, res) => {
+const sendTokenResponse = (user, statusCode, req, res) => {
   const accessToken = generateAccessToken(user._id);
   const refreshToken = generateRefreshToken(user._id);
+
+  const isSecureConnection = req.secure || req.headers['x-forwarded-proto'] === 'https';
 
   // Set HTTP-only Cookie for Refresh Token
   const cookieOptions = {
     expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 Days
     httpOnly: true,
-    secure: process.env.NODE_ENV === 'production',
-    sameSite: process.env.NODE_ENV === 'production' ? 'none' : 'lax'
+    secure: isSecureConnection,
+    sameSite: isSecureConnection ? 'none' : 'lax'
   };
 
   res.cookie('token', accessToken, {
@@ -127,7 +129,7 @@ export const verifyEmail = catchAsync(async (req, res, next) => {
   user.otpExpiry = null;
   await user.save();
 
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse(user, 200, req, res);
 });
 
 // @desc    Login user
@@ -159,15 +161,22 @@ export const login = catchAsync(async (req, res, next) => {
   }
 
   // 5) Issue tokens
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse(user, 200, req, res);
 });
 
 // @desc    Logout user & Clear cookies
 // @route   POST /api/auth/logout
 // @access  Private
 export const logout = catchAsync(async (req, res, next) => {
-  res.clearCookie('token');
-  res.clearCookie('refreshToken');
+  const isSecureConnection = req.secure || req.headers['x-forwarded-proto'] === 'https';
+  const cookieOptions = {
+    httpOnly: true,
+    secure: isSecureConnection,
+    sameSite: isSecureConnection ? 'none' : 'lax'
+  };
+
+  res.clearCookie('token', cookieOptions);
+  res.clearCookie('refreshToken', cookieOptions);
 
   res.status(200).json({
     status: 'success',
@@ -200,7 +209,7 @@ export const refreshToken = catchAsync(async (req, res, next) => {
     return next(new CustomError('Session belongs to a user that no longer exists.', 401));
   }
 
-  sendTokenResponse(user, 200, res);
+  sendTokenResponse(user, 200, req, res);
 });
 
 // @desc    Get currently logged-in user profile
