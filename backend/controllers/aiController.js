@@ -45,7 +45,7 @@ export const handleAiChat = catchAsync(async (req, res, next) => {
   const catalogText = products
     .map((p, idx) => {
       const priceText = p.discountPrice > 0 ? `₹${p.discountPrice} (Promo, original ₹${p.price})` : `₹${p.price}`;
-      return `${idx + 1}. Title: "${p.title}" | Brand: "${p.brand}" | Price: ${priceText} | Category: "${p.categoryId?.name || 'Electronics'}" | Stock: ${p.stock > 0 ? `${p.stock} units` : 'Out of Stock'} | Link: "/product/${p._id}"`;
+      return `${idx + 1}. Title: "${p.title}" | Brand: "${p.brand}" | Price: ${priceText} | Category: "${p.categoryId?.name || 'Electronics'}" | Stock: ${p.stock > 0 ? `${p.stock} units` : 'Out of Stock'} | Description: "${p.description}" | Link: "/product/${p._id}"`;
     })
     .join('\n');
 
