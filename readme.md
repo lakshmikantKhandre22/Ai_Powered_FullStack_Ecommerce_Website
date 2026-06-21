@@ -96,6 +96,45 @@ Home → Products → Product Details → Cart → Checkout → Razorpay Payment
 * Production-Ready Folder Structure
 * Internship & Portfolio Ready Project
 
+
+
+
+
+
+
+
+1. Full-stack ecommerce system
+Products, orders, cart, wishlist, reviews
+MongoDB + Mongoose models
+
+
+🤖 2. AI integration (Gemini)
+Intent detection
+Response generation
+Chatbot inside ecommerce
+
+
+🧠 3. RAG-style system
+DB retrieval + AI context injection
+Real-world architecture pattern
+
+⚙️ 4. Advanced backend logic
+JWT authentication
+Role-based user handling (implicit)
+Middleware + error handling
+Async wrapper pattern
+
+📊 5. Recommendation system
+Custom ranking algorithm (very important)
+Budget + keyword + rating scoring
+
+
+
+
+my project uses a RAG (Retrieval-Augmented Generation) architecture. It first retrieves relevant ecommerce data like products, orders, and reviews from MongoDB, then injects this context into a prompt, and finally uses Gemini AI to generate accurate, grounded responses based on real data.
+
+
+
 ## 👨‍💻 Author
 
 Lakshmikant
