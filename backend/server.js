@@ -72,7 +72,7 @@ app.use('/api/reviews', reviewRoutes);
 app.use('/api/orders', orderRoutes);
 app.use('/api/payments', paymentRoutes);
 app.use('/api/admin', adminRoutes);
-app.use('/api/ai', aiRoutes);
+app.use('/api/chat', aiRoutes);
 
 app.get("/", (req, res) => {
   res.send("Backend is running 🚀");
