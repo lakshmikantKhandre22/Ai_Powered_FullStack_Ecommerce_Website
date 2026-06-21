@@ -135,6 +135,58 @@ my project uses a RAG (Retrieval-Augmented Generation) architecture. It first re
 
 
 
+
+
+
+
+
+
+
+
+
+🚀 AI-Powered Full-Stack E-Commerce Platform with Intelligent Gemini Chatbot (RAG-Based Assistant)
+🧩 Tech Stack:
+
+MongoDB, Express.js, React.js, Node.js (MERN), Google Gemini API, JWT Authentication, REST APIs
+
+📌 Project Description:
+
+Built a full-stack e-commerce web application integrated with an AI-powered conversational shopping assistant using Google Gemini API. The system implements a Retrieval-Augmented Generation (RAG) pipeline to provide context-aware responses using real product, order, and review data from the database.
+
+⚙️ Key Features:
+
+Developed a complete e-commerce platform with product listing, cart, wishlist, reviews, and order management.
+
+Integrated JWT-based authentication for secure user sessions and personalized features.
+
+Built an AI shopping chatbot using Gemini API for product search, recommendations, comparison, and order tracking.
+
+Implemented a RAG-based architecture by retrieving real-time data from MongoDB and injecting it into AI prompts for accurate responses.
+
+Designed a custom product ranking engine based on price, rating, keywords, and availability.
+
+Added intent detection system to classify user queries into search, recommendation, comparison, and tracking flows.
+
+Enabled personalized recommendations using user cart, wishlist, and purchase history.
+
+Optimized product search using regex-based fuzzy matching and filtering logic.
+
+
+
+🏆 Highlights (What makes it stand out):
+Combines AI + full-stack development + recommendation system
+Implements real-world RAG architecture (production-style design)
+Reduces hallucinations by grounding AI responses in database context
+Enhances user experience with conversational shopping interface
+
+
+
+
+
+
+
+
+
 ## 👨‍💻 Author
 
 Lakshmikant
